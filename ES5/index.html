@@ -9,18 +9,114 @@
 <body>
   <script>
     let { log } = console; //解构,不进行变量提升,放在上边
-    function a () {
-      var bbb = 100;
-      function b () {
-        bbb++;
-        log(bbb)
-      }
-      return b;
-    }
+    
+  //   function test () {
+  //   var arr = [];
+  //   for (var i = 0; i < 10; i++) {
+  //     (function (w) {
+  //       arr[w] = function () {
+  //         document.write(w + ' ');
+  //       }
+  //     }(i));
+  //   }
+  //   return arr;
+  // }
 
-    var demo = a();
-    demo();
-    demo();
+  function test () {
+    var arr = [];
+    for (var i = 0; i < 10; i++) {
+      (function (w) {
+        arr[w] = function () {
+          document.write(w + ' ');
+        }
+      }(i))
+    }
+      return arr;
+  }
+  
+  var myArr = test();
+  for (var j = 0 ; j < 10; j++) {
+    myArr[j]();
+  }
+
+    // ! function test(a) {
+    //   log(a); 
+    // }(1);
+
+    // var a = function test (b) {
+    //   var aaa = b;
+    //   return aaa;
+    // }(2)
+
+    // var test = function () {
+    //   log (1);
+    // }()
+
+    // var num1 = (function (a, b, c) {
+    //   var d = a + b + c * 2;
+    //   return d;
+    // }(1, 2, 3));
+
+    // var num2 = (function (a) {
+    //   var b = a;
+    //   return b;
+    // })(1);
+    
+    
+    // var a = 1;
+    // (function abc(){
+    //   var a = 123;
+    //   var b = 234;
+    //   log(a + b); 
+    // }())
+
+
+
+    // function eater () {
+    //   var food = "";
+    //   var obj = {
+    //     eat: function () {
+    //       log("i am eating " + food);
+    //       // food = "";
+    //     },
+    //     push: function (myFood) {
+    //       food = myFood;
+    //     }
+    //   }
+    //   return obj;
+    // }
+    // var eater1 = eater();
+    // eater1.push("banana");
+    // eater1.eat();
+
+    // function test() {
+    //   var num = 100;
+    //   function a () {
+    //     num ++;
+    //     log(num);
+    //   }
+    //   function b () {
+    //     num --;
+    //     log(num);
+    //   }
+    //   return [a, b];
+    // }
+    // var demo = test();
+    // demo[1]();
+    // demo[0]();
+
+    // function a () {
+    //   var bbb = 100;
+    //   function b () {
+    //     bbb++;
+    //     log(bbb)
+    //   }
+    //   return b;
+    // }
+
+    // var demo = a();
+    // demo();
+    // demo();
 
     // var  a = 234;
     // function a1 () {
