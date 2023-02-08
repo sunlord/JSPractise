@@ -5,12 +5,287 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <!-- <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    li {
+      cursor: pointer;
+    }
+
+    li:nth-of-type(2n) {
+      background-color: red;
+    }
+    li:nth-of-type(2n+1) {
+      background-color: green;
+    }
+  </style> -->
 </head>
 <body>
+<script>
+
+  var inherit = (function () {
+    var F = function () {};
+    return function (Target, Origin) {
+      F.prototype = Origin.prototype;
+      Target.prototype = new F();
+      Target.prototype.constructor = Target;
+      Target.prototype.uber = Origin.prototype;
+    }
+  }());
+
+  // function Deng(name, wife) {
+  //   var prepareWife = 'zhang';
+  //   this.name = name;
+  //   this.wife = wife;
+  //   this.divorce = function () {
+  //     this.wife = prepareWife;
+  //   }
+  //   // this.changePrepareWife = function (target) {
+  //   //   prepareWife = target;
+  //   // }
+  //   // this.sayPrepareWife = function () {
+  //   //   console.log(prepareWife);
+  //   // }
+  // }
+
+  // var deng = new Deng('deng','liu');
+
+  // Father.prototype.lastName = 'deng';
+  // function Father () {
+
+  // }
+
+  // function Son () {
+
+  // }
+
+  // function inherit (Target, Origin) {
+  //   function F () {};
+  //   F.prototype = Origin.prototype;
+  //   Target.prototype = new F();
+  //   Target.prototype.constructor = Target;
+  //   Target.prototype.uber = Origin.prototype;
+  // }
+
+  
+  // inherit(Son, Father);
+
+  // Son.prototype.sex = 'male';
+  // // Son.prototype = Father.prototype;
+  // var son = new Son();
+  // var father = new Father();
+  
+  // Grand.prototype.lastName = 'ji';
+  // function Grand () {
+
+  // }
+  // var grand = new Grand();
+  // Father.prototype = grand;
+  // function Father () {
+  //   this.name = '呵呵';
+  // }
+  // var father = new Father();
+  // Son.prototype = father;
+  // function Son () {
+
+  // }
+  // var son = new Son();
+
+  // function Person(name, age, sex) {
+  //   this.name = name;
+  //   this.age = age;
+  //   this.sex = sex;
+  // }
+
+  // function Student(name, age, sex, tel, grade) {
+  //   Person.call(this, name, age, sex);
+  //   this.tel = tel;
+  //   this.grade = grade;
+  // }
+
+  // var student = new Student('sunny', 123, 'male', 139, 2017);
+  
+  // var person = new Person('deng', 100);
+
+  // var obj = {
+  // }
+  // Person.call(obj);
+
+  // console.log(obj);
+
+  // for (var i = 0; i < 10; i++) {
+  //   var num = Math.floor(Math.random() * 100);
+  //   console.log(num);
+  // }
+  
+  // var obj = Object.create(null);
+  // obj.toString = function () {
+  //   return 'hello world'
+  // }
+  // document.write(obj); 
+  // alert(obj);
+  // console.log(obj);
+
+  // var obj = Object.create(null);
+
+  // var obj = Object.create(Person.prototype);
+  // function Person () {
+  //   this.name = 'a1'; 
+  // }
+
+  // function Father () {
+  //   this.name = {
+  //     name1: 'hehe'
+  //   }
+
+  // }
+  // var father = new Father();
+  // Person.prototype = father;
+  // function Person() {
+  //   //this = {
+  //   //  __proto__ : Person.prototype
+  //   //}
+  // }
+  // var person = new Person();
+  // Car.prototype.carName = 'BMW';
+  // Car.prototype.height = 1400;
+  // Car.prototype.lang = 4900;
+  // function Car(color, owner) {
+  //   this.owner = owner;
+  //   this.color = color;
+  // }
+  // var car = new Car('red', 'prof.ji');
+
+  // Person.prototype.name = 'a';
+  // Person.prototype.say = function() {
+  //   console.log("呵呵");
+  // } 
+  // function Person (name, age, sex) {
+  //   this.name = name;
+  //   this.age = age;
+  //   this.sex = sex;
+  // } 
+  // var person = new Person('ji', 27, 'male');
+  // var person1 = new Person();
+  // console.log(person.name);
+  // console.log(person1.name);
+
+  // var str = 'abc';
+  // str += 1;
+  // var test = typeof(str);
+  // if (test.length == 6) {
+  //   test.sign = "typeof的返回结果";
+  // }
+  // console.log(test.sign); //undefined 调用包装类
+
+  // var str = 'abcd';
+  // str.length = 2; //无法被截断 new String('abcd').length = 2; delete;
+  // console.log(str); //输出abcd
+
+  // var num = new Number(123);
+  // num.abc = 'a';
+  // console.log(num)
+
+  // function Person (name, height) {
+  //   // var that = {};
+  //   this.name = name;
+  //   this.height = height;
+  //   return 123; //有new则不能返回原始值,只能返回{}才能捣乱.
+  //   // this.name = name;
+  //   // this.height = height;
+  //   // this.say = function () {
+  //   //   console.log(this.say);
+  //   // } 
+  // } 
+
+  // var person = new Person('xiaowang', 180);
+  // var person1 = new Person('xiaozhang',175);
+
+
+  // function Car (color) {
+  //   // var this = {}; AO {this: {}}
+  //   this.color = color;
+  //   this.name = 'BMW';
+  //   this.height = '1400';
+  //   this.lang = '4900';
+  //   this.weight = 1000;
+  //   this.run = function () {
+  //     this.health --;
+  //   }
+  //   // return this;
+  // }
+  // var car = new Car('red');
+  // var car1 = new Car('green');
+
+// var mrDeng = {
+  //   name: 'MrDeng',
+  //   age: 40,
+  //   sex: 'male',
+  //   health: 100,
+  //   smoke: function () {
+  //     console.log('cool!');
+  //     this.health--;
+  //     console.log(this.health);
+  //   },
+  //   drink: function () {
+  //     console.log('drink!');
+  //     this.health--;
+  //     console.log(this.health);
+  //   }
+  // }
+  // let { smoke, drink } = mrDeng;
+  // smoke();
+  // drink();
+
+  // var x = 1;
+  // if (function f () {}) { //()条件内判断完就销毁.
+  //   x += typeof f;
+  // } 
+  // console.log(x);
+  
+  // var f = (
+  //   function f () {
+  //     return "1";
+  //   },
+  //   function g () {
+  //     return 2;
+  //   }
+  // )();
+  // typeof (f);
+
+  // var a = (1 - 1, 1 + 1);
+  // console.log(a)
+
+
+</script>
+
+  <!-- <ul>
+    <li>a</li>
+    <li>a</li>
+    <li>a</li>
+    <li>a</li>
+  </ul>
+
   <script>
     let { log } = console; //解构,不进行变量提升,放在上边
     
-  //   function test () {
+    var liCollection = document.getElementsByTagName('li');
+    for (var i = 0; i < liCollection.length; i++) {
+      (function (j) {
+        liCollection[j].onclick = function () {
+          log(j);
+        }
+      }(i))
+    } //闭包解决实际问题 -->
+
+  <!-- //   function test () {
   //   var arr = [];
   //   for (var i = 0; i < 10; i++) {
   //     (function (w) {
@@ -22,22 +297,22 @@
   //   return arr;
   // }
 
-  function test () {
-    var arr = [];
-    for (var i = 0; i < 10; i++) {
-      (function (w) {
-        arr[w] = function () {
-          document.write(w + ' ');
-        }
-      }(i))
-    }
-      return arr;
-  }
+  // function test () {
+  //   var arr = [];
+  //   for (var i = 0; i < 10; i++) {
+  //     (function (w) {
+  //       arr[w] = function () {
+  //         document.write(w + ' ');
+  //       }
+  //     }(i))
+  //   }
+  //     return arr;
+  // }
   
-  var myArr = test();
-  for (var j = 0 ; j < 10; j++) {
-    myArr[j]();
-  }
+  // var myArr = test();
+  // for (var j = 0 ; j < 10; j++) {
+  //   myArr[j]();
+  // }
 
     // ! function test(a) {
     //   log(a); 
@@ -126,10 +401,10 @@
     //   b1();
     // }
     // a1();
-    // log(a);
+    // log(a); -->
 
 
-    //作用域精解
-  </script>
+    <!-- //作用域精解
+  </script> -->
 </body>
 </html>
