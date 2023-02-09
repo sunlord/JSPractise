@@ -30,15 +30,134 @@
 <body>
 <script>
 
-  var inherit = (function () {
-    var F = function () {};
-    return function (Target, Origin) {
-      F.prototype = Origin.prototype;
-      Target.prototype = new F();
-      Target.prototype.constructor = Target;
-      Target.prototype.uber = Origin.prototype;
+  var obj = {
+    name: 'qiangzi',
+    age: 20,
+    sex: 'male',
+    card: ['union','visa'],
+    wife: {
+      name: 'xiaoli',
+      son: {
+        name: 'xiaoqiang',
+        age: 2
+      }
     }
-  }());
+  }
+  var obj1 = {
+
+  }
+
+  function deepClone(Origin, Target) {
+    var Target = Target || {};
+
+    for( var prop in Origin) {
+      if(Origin.hasOwnProperty(prop)) {
+
+        if(Origin[prop] !== 'null' && typeof(Origin[prop]) == 'object') {
+
+          Target[prop] = Object.prototype.toString.call(Origin[prop]) == '[object Array]' ? [] : {}; 
+          deepClone(Origin[prop], Target[prop]);
+
+        }else {
+          Target[prop] = Origin[prop];
+        } 
+      }
+    }
+    return Target;
+  }
+
+  deepClone(obj, obj1);
+
+
+  // if(Object.prototype.toString.call(Origin[prop]) == '[object Array]'){
+            //   Target[prop] = [];
+            // }else {
+            //   Target[prop] = {};
+            // }
+
+  // //浅度拷贝
+  // var obj = {
+  //   name: 'hello',
+  //   age: 12,
+  //   sex: 'male',
+  //   card: ['union','visa']
+  // } 
+  // var obj1 = {
+
+  // }
+  // function clone(Origin, Target) {
+  //   var Target = Target || {};
+  //   for(var prop in Origin) {
+  //     Target[prop] = Origin[prop];
+
+  //   }
+  //   return Target;
+  // }
+  // clone(obj, obj1);
+
+
+    // var foo = 123;
+    // function test() {
+    //   var foo = 234;
+    //   alert(hello);
+    // }
+    // new test();
+
+
+
+  // var arr = {};
+
+  // 错误写法了.
+  // var arr = [];
+  // console.log(arr instanceof Object);
+  // if(arr instanceof Object) {
+  //   console.log('是数组');
+  // }else {
+  //   console.log('是对象');
+  // }
+
+  // function Person () {
+
+  // }
+
+  // var person = new Person
+
+  // var obj = {
+  //   name: '12',
+  //   age: 123,
+  //   sex: 'male',
+  //   height: 180,
+  //   __proto__ : {
+  //     lastName: 'deng'
+  //   }
+  // } 
+
+  // for (var prop in obj) {
+  //   if(obj.hasOwnProperty(prop)) {
+  //     document.write(prop + ':' + obj[prop] + ' ' + typeof(obj[prop]) + '<br>');
+  //   }
+  // }
+
+  // var obj = {
+  //   wife1: 'xiaozhang',
+  //   wife2: 'xiaoliu',
+  //   wife3: 'xiaohe',
+  //   sayWife(num) {
+  //     console.log(obj['wife' + num]);
+  //     return obj['wife' + num];
+  //   }
+  // }
+
+  // //圣杯模式
+  // var inherit = (function () {
+  //   var F = function () {};
+  //   return function (Target, Origin) {
+  //     F.prototype = Origin.prototype;
+  //     Target.prototype = new F();
+  //     Target.prototype.constructor = Target;
+  //     Target.prototype.uber = Origin.prototype;
+  //   }
+  // }());
 
   // function Deng(name, wife) {
   //   var prepareWife = 'zhang';
@@ -264,28 +383,26 @@
   // console.log(a)
 
 
-</script>
+//   <!-- <ul>
+//     <li>a</li>
+//     <li>a</li>
+//     <li>a</li>
+//     <li>a</li>
+//   </ul>
 
-  <!-- <ul>
-    <li>a</li>
-    <li>a</li>
-    <li>a</li>
-    <li>a</li>
-  </ul>
-
-  <script>
-    let { log } = console; //解构,不进行变量提升,放在上边
+//   <script>
+//     let { log } = console; //解构,不进行变量提升,放在上边
     
-    var liCollection = document.getElementsByTagName('li');
-    for (var i = 0; i < liCollection.length; i++) {
-      (function (j) {
-        liCollection[j].onclick = function () {
-          log(j);
-        }
-      }(i))
-    } //闭包解决实际问题 -->
+//     var liCollection = document.getElementsByTagName('li');
+//     for (var i = 0; i < liCollection.length; i++) {
+//       (function (j) {
+//         liCollection[j].onclick = function () {
+//           log(j);
+//         }
+//       }(i))
+//     } //闭包解决实际问题 -->
 
-  <!-- //   function test () {
+//   <!-- //   function test () {
   //   var arr = [];
   //   for (var i = 0; i < 10; i++) {
   //     (function (w) {
@@ -404,7 +521,7 @@
     // log(a); -->
 
 
-    <!-- //作用域精解
-  </script> -->
+  //   <!-- //作用域精解
+</script>
 </body>
 </html>
