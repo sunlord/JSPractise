@@ -29,44 +29,125 @@
 </head>
 <body>
 <script>
+  var { log } = console;
 
-  var obj = {
-    name: 'qiangzi',
-    age: 20,
-    sex: 'male',
-    card: ['union','visa'],
-    wife: {
-      name: 'xiaoli',
-      son: {
-        name: 'xiaoqiang',
-        age: 2
+  var arr = [1,1,1,2,2,2,0,0,0,'a','a','b','b',1,2,3];
+  arr.sort((a,b) => a - b)
+    log(arr);
+  Array.prototype.unique = function(Target) {
+    Target.sort(function(a,b){
+      return a - b;
+    });
+    log(Target);
+    return (function(Target) {
+      for (var i = 0; i <= Target.length; i++) {
+        if(Target[i] == arr[i+1]) {
+          Target.splice(i,1);
+        }
       }
-    }
+      return Target;
+    })(Target);
   }
-  var obj1 = {
+  
+  
+  
+  
+  log(arr.unique(arr));
 
-  }
 
-  function deepClone(Origin, Target) {
-    var Target = Target || {};
 
-    for( var prop in Origin) {
-      if(Origin.hasOwnProperty(prop)) {
 
-        if(Origin[prop] !== 'null' && typeof(Origin[prop]) == 'object') {
+  // var obj = {
+  //   0: 'a',
+  //   length: 1,
+  //   push: Array.prototype.push,
+  //   splice: Array.prototype.splice
+  // }
 
-          Target[prop] = Object.prototype.toString.call(Origin[prop]) == '[object Array]' ? [] : {}; 
-          deepClone(Origin[prop], Target[prop]);
+  // var obj = {
+    
+  //   "2": 'b',
+  //   "3": 'c',
+  //   "length": 4,
+  //   "push": Array.prototype.push,
+  //   "splice": Array.prototype.splice 
+  // };
+  
+  // obj.push('d');
+  // obj.push('e');
 
-        }else {
-          Target[prop] = Origin[prop];
-        } 
-      }
-    }
-    return Target;
-  }
+  // // Array.prototype.push = function (Target) {
+  // //   obj[obj.length] = Target;
+  // //   obj.length++;
+  // // }
 
-  deepClone(obj, obj1);
+  // log(obj);
+
+
+
+  // // const a = {
+  // //   _a: 0,
+  // //   toString: function () {
+  // //     return ++_a;
+  // //   }
+  // // }
+
+  // if(a == 1 && a == 2 && a == 3) {
+  //   log("win!");
+  // }
+
+  // var arr = [1,2,3,4,5];
+  // var arr1 = [6,7,8,9,0];
+  // log(arr.concat(arr1));
+  // log(arr);
+  // log(arr1);
+  // var newArr = arr.slice();
+  // log(newArr);
+
+
+  // var arr = [1,2,3,4,5,6,7,8,9];
+  // arr.sort(function (a, b){
+  //   return Math.random() - 0.5;
+  // })
+  // log(arr);
+
+  // var arr = [1,3,23,5,4,6,9,7,8,2];
+  // // arr.sort();
+  // log(arr);
+  // arr.sort(function (a, b) {
+
+  //   // if (a > b) {
+  //   //   return 1;
+  //   // }else {
+  //   //   return -1;
+  //   // }
+
+  //   // a > b ? a - b : a - b;
+
+  //   // return a - b; //升序
+  //   return b - a; //降序
+  // })
+  // log(arr);
+  // arr.reverse();
+  // log(arr);
+  
+
+  // var arr = [1, 2, 3, 4, 5];
+  // // arr.shift();
+  // // log(arr);
+  // // arr.unshift(5);
+  // // log(arr);
+  // // arr.reverse();
+  // // log(arr);
+  // arr.splice(1, 0, '你好');
+  // log(arr);
+
+
+  // var arr = [1, 2, 3];
+  // var num = arr.pop();
+  // console.log(num);
+  // console.log(arr);
+
 
 
   // if(Object.prototype.toString.call(Origin[prop]) == '[object Array]'){
