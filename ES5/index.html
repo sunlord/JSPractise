@@ -31,28 +31,179 @@
 <script>
   var { log } = console;
 
-  var arr = [1,1,1,2,2,2,0,0,0,'a','a','b','b',1,2,3];
-  arr.sort((a,b) => a - b)
-    log(arr);
-  Array.prototype.unique = function(Target) {
-    Target.sort(function(a,b){
-      return a - b;
-    });
-    log(Target);
-    return (function(Target) {
-      for (var i = 0; i <= Target.length; i++) {
-        if(Target[i] == arr[i+1]) {
-          Target.splice(i,1);
-        }
-      }
-      return Target;
-    })(Target);
-  }
+  var arr = [1, 2, 3, 4, 5, 3, 4, 2, 1, 5];
+  const set = new Set(arr);
+
+  log([...set]);
+  log([...new Set('ababaaabbbabcd')].join(""));
+  set.add(6);
+  set.add('6');
+  set.add('6');
+  set.delete(5);
+  set.delete(100);
+  log(set.has("6"));
+  log(set.clear());
+  log(set);
+
+  // var s = new Set();
+  // var arr =[10, 20, 30, 30, 40, 50];
+  // arr.forEach(x => s.add(x));
+  // log(s);
+
+  // var name = "hello";
+  // var user = {
+  //   name: 'world',
+  //   age: 20,
+  //   getName() {
+  //     setTimeout(() => {
+  //       log(this.name);
+  //     })
+  //   }
+  // }
+  // user.getName();
+
+  // var fn = x => x;
+  // log(fn(1));
+
+
+  // var fn = function () {
+  //   return {
+  //     x: 10,
+  //     y: 20
+  //   }
+  // }
+  // log(fn());
+
+  // var fn2 = () => ({x: 10, y: 20});
+
+  // log(fn2());
+  // var fn = function (x, y) {
+  //   var z = 10;
+  //   return x + y + z;
+  // }
   
+  // var fn2 = (x, y) => {
+  //   var z = 10;
+  //   return x + y + z;
+  // }
   
+  // log(fn(10, 20));
+  // log(fn2(10, 20));
+
+  // function fn1 () {
+
+  // }
+
+  // var fn2 = function (x, y) {
+  //   return x + y;
+  // }
+
+  // var fn3 = (x, y) => x + y;
+  // log(fn3(10, 20));
+
+  // var z = { 
+  //   a: 10,
+  //   b: 20
+  // }
+  //   var n = {  ...z }
+  //   console.log(n) // {a: 10, b: 20}
+
+  // var ib = "baidu.com";
+  // var obj = {
+  //   [ib]: '百度',
+  //   a: '牛的'
+  // }
+  // log(obj);
+
+  // var name = 'jiong';
+
+  // var obj = {
+  //   name,
+  //   age: 20,
+  //   getName() {
+  //     return this.name
+  //   }
+  // }
+  // log(obj.getName());
+
+  // log(Array(3));
   
+
+  // for(var i = 0; i < arr.length; i++) {
+  //   log(arr[i]);
+  // }
+  // log(...arr);
+  // log(Math.max.apply(null, arr)); //取最大值
+  // log(Math.max(...arr));
+
+  // var h = "hello world";
+  // var i = "he";
+  // log(h.indexof('a') != -1);
+  // log(h.at(20));
+
+  // log(h.trim());
+  // log(h.trimStart());
+  // log(h.trimEnd());
+  // log(h.padStart(10, 'ab'));
+  // log(h.padEnd(10, 'ab'));
+
+  // var x = "x";
+  // log(x.repeat);
+
+  // var strAll = "hello world";
+  // var str = "ld";
+  // log(strAll.includes(str));
+  // log(strAll.startsWith(str));
+  // log(strAll.endsWith('ld', 11));
+
+
+
+  // var str = "hello world";
+  // for(let i = 0; i < str.length; i++) {
+  //   log(str[i]);
+  // }
+
+
+//es6 选出所有标签,并进行数组去重
+// log([...document.querySelectorAll('*')].map(v => v.tagName));
+// log([...new Set([...document.querySelectorAll('*')].map(v => v.tagName))]);
+
+// log(Array.prototype.slice.call(document.querySelectorAll('*')));
+
+//计时器传参
+// setInterval(fn('可以了'),100);
+// function fn (param) {
+//   return function() {
+//     log(param);
+//   }
+// }
+// setInterval(
+//   (function (param) {
+//     return function () {
+//       log(param);
+//     }
+//   }(123)),1000);
   
-  log(arr.unique(arr));
+
+
+
+  // var arr = [1,1,1,2,2,2,0,0,0,'a','a','b','b'];
+  // arr.sort((a,b) => a - b)
+  //   // log(arr);
+  // Array.prototype.unique = function(Target) {
+  //   Target.sort((a,b) => a - b);
+  //   // log(Target);
+  //   return (function(Target) {
+  //     for (var i = 0; i <= Target.length; i++) {
+  //       if(Target[i] == arr[i+1]) {
+  //         Target.splice(i,1);
+  //       }
+  //     }
+  //     return Target;
+  //   })(Target);
+  // }
+  
+  // log(arr.unique(arr));
 
 
 
