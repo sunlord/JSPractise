@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="X-UA-Compatible" http-equiv="Access-Control-Allow-Origin" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
@@ -11,6 +11,35 @@
     你好
   </div> -->
   <script>
+    const { log } = console;
+    //XHR对象
+    const getJSON = function (url) {
+      const promise = new Promise(function (resolve, reject) {
+        // 异步操作: 网络请求代码
+        const handler = function () {
+          if (this.readyState !== 4) {
+            // 0 1 2 3 4
+            return;
+          }
+          if (this.status === 200) {
+            resolve(this.response); //成功
+          }else {
+            reject(new Error(this.statusText)); //失败
+          }
+        }
+        const client = new XMLHttpRequest();
+        client.open('GET', url);
+        client.onreadystatechange = handler;
+        client.responseType = 'json';
+        client.setRequestHeader('Accept', 'application/json');
+        client.send();
+      })
+      return promise;
+    }
+
+    getJSON('https://www.baidu.com/')
+    .then(data => log(data), error => log(error));
+
 
     // for (let i = 0; i < 100; i++) {
     //   const element = document.createElement('div');

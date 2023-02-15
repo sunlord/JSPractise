@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    class Person {
+      
+      // 静态方法
+      static sayHello () {
+        console.log("Hello");
+      }
+      //实例属性
+      constructor(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      // 实例方法
+      say () {
+        console.log(this.name);
+      }
+      sayHello () {
+        console.log("你好");
+      }
+    }
+    
+
+    var p = new Person('jiong',28);
+    p.say();
+    console.log(p.name);
+    Person.sayHello();
+    p.sayHello();
+    // 静态属性
+    Person.age = 30;
+    console.log(Person.age);
+
+  </script>
+  
+</body>
+</html>
